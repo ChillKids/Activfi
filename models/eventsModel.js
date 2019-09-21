@@ -4,10 +4,9 @@ const {
 } = require('pg')
 // pools will use environment variables
 // for connection information
+const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({
-    host: 'localhost',
-    database: 'myDb',
-    port: 5431,
+    connectionString: connectionString
 });
 
 function selectAllEvents(callback) {
@@ -37,7 +36,6 @@ function insertEvent(eventObj, callback) {
     const eventDate = eventObj.event_date;
     const location = eventObj.event_location;
     const createdAt = eventObj.event_date;
-
     pool.query(`INSERT INTO events (
         event_creator, 
         event_name, 
@@ -45,17 +43,17 @@ function insertEvent(eventObj, callback) {
         event_location, 
         event_date, 
         created_at) 
-        VALUES ($1, $2, $3, $4, $5, $6)`, 
+        VALUES ($1, $2, $3, $4, $5, $6)`,
         [creater, eventName, description, location, eventDate, createdAt], (err, res) => {
-        if (err) {
-            callback(err);
-        } else {
-            callback(null, res.rows);
-    
-        }
-    })
+            if (err) {
+                callback(err);
+            } else {
+                callback(null, 201);
+            }
+        })
 }
 module.exports = {
     selectEvent: selectEvent,
-    selectAllEvents: selectAllEvents
+    selectAllEvents: selectAllEvents,
+    insertEvent: insertEvent
 }

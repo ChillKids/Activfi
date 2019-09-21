@@ -15,7 +15,6 @@ router.get('/', (req, res) => {
         }
     })
 });
-
 /* GET event by id. */
 router.get('/:id', (req, res) => {
     getEventWith(req.params.id, (err, resp) => {
@@ -26,10 +25,9 @@ router.get('/:id', (req, res) => {
         }
     })
 })
-
 /* POST event with parameters. */
 router.post('/', (req, res) => {
-    createEvent(req.params, (err, resp) => {
+    createEvent(req.body, (err, resp) => {
         if (err) {
             res.send(err);
         } else {
@@ -37,5 +35,4 @@ router.post('/', (req, res) => {
         }
     });
 });
-
 module.exports = router;
