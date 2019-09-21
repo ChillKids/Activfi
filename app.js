@@ -38,13 +38,8 @@ app.use('/events', eventsRouter);
 app.use(function(req, res, next) {
     next(createError(404));
 });
-// app.use(cors(corsOptions));
+app.use(cors());
 // error handler
-app.use((err, req, res, next) {
-    res.header('Access-Control-Allow-Origin', `${CORS_URL}`);
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-    next();
-})
 app.use(function(err, req, res, next) {
     // set locals, only providing error in development
     res.locals.message = err.message;
