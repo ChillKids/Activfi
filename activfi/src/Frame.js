@@ -26,15 +26,10 @@ import MailIcon from '@material-ui/icons/Mail';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-
-import MenuItem from '@material-ui/core/MenuItem';
-import TextField from '@material-ui/core/TextField';
-
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
+
   top: {
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
   },
@@ -187,7 +182,7 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(1),
     width: 200,
   },
-  
+
 }));
 
 export default function SearchAppBar() {
@@ -203,121 +198,91 @@ export default function SearchAppBar() {
   }
 
   return (
-    <div className={classes.root}>
-      <div className={classes.top}>
-        <CssBaseline />
-        <AppBar position="sticky" color="primary" className={clsx(classes.topbar, {
-          [classes.appBarShift]: open
-        })} >
-          <Toolbar>
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography className={classes.title} variant="h6" noWrap>
-              <Button size="large">
-                Activfy
+    <div className={classes.root} >
+        <div className={classes.top}>
+          <CssBaseline />
+          <AppBar position="sticky" color="primary" className={clsx(classes.topbar, {
+            [classes.appBarShift]: open
+          })} >
+            <Toolbar>
+              <IconButton
+                edge="start"
+                className={classes.menuButton}
+                color="inherit"
+                aria-label="open drawer"
+                onClick={handleDrawerOpen}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography className={classes.title} variant="h6" noWrap>
+                <Button size="large">
+                  Activfy
             </Button>
-            </Typography>
-            <div className={classes.search}>
+              </Typography>
+              <div className={classes.search}>
 
-              <div className={classes.searchIcon}>
-                <IconButton
-                  edge="end"
-                  color="inherit"
-                  aria-label="search"
-                  size="medium"
-                >
-                  <SearchIcon />
-                </IconButton>
+                <div className={classes.searchIcon}>
+                  <IconButton
+                    edge="end"
+                    color="inherit"
+                    aria-label="search"
+                    size="medium"
+                  >
+                    <SearchIcon />
+                  </IconButton>
+                </div>
+                <InputBase
+                  className={classes.searchBar}
+                  placeholder="Search…"
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                  }}
+                  inputProps={{ 'aria-label': 'search' }}
+                  id="searchKey"
+                />
               </div>
-              <InputBase
-                className={classes.searchBar}
-                placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-                inputProps={{ 'aria-label': 'search' }}
-                id="searchKey"
-              />
-            </div>
-          </Toolbar>
-        </AppBar>
-      </div>
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="left"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
+            </Toolbar>
+          </AppBar>
         </div>
-        <Divider />
-        <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
+        <Drawer
+          className={classes.drawer}
+          variant="persistent"
+          anchor="left"
+          open={open}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
+          <div className={classes.drawerHeader}>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            </IconButton>
+          </div>
+          <Divider />
+          <List>
+            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+              <ListItem button key={text}>
+                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+          <List>
+            {['All mail', 'Trash', 'Spam'].map((text, index) => (
+              <ListItem button key={text}>
+                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+        </Drawer>
 
-      <div className={classes.drawerHeader} />
-      <Fab size="medium" color="secondary" aria-label="add" className={classes.addbutton}>
-        <AddIcon />
-      </Fab>
-      <CssBaseline />
-      <div className={classes.body}>
-        <React.Fragment>
-          <Paper className={classes.paper}>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm container>
-                <Grid item xs container direction="column" spacing={2}>
-                  <Grid item xs>
-                    <Typography gutterBottom variant="overline">
-                      Create your own activity here...
-                       </Typography>
-                       <hr></hr>
-                    <TextField
-                      id="standard-textarea"
-                      label="With placeholder multiline"
-                      placeholder="Placeholder"
-                      multiline
-                      className={classes.textField}
-                      margin="normal"
-                    />
-
-
-                  </Grid>
-                </Grid>
-              </Grid>
-            </Grid>
-          </Paper>
-        </React.Fragment>
-      </div>
-
+        <div className={classes.drawerHeader} />
+        <Fab size="medium" color="secondary" aria-label="add" className={classes.addbutton}>
+          <AddIcon />
+        </Fab>
     </div>
   );
 }

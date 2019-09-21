@@ -3,6 +3,7 @@ import Frame from './Frame';
 import EventCards from './EventCard'
 import CreateEvent from './CreateEvent'
 import ListOfEvents from './ListOfEvents'
+//import BackImg from './BackImg'
 
 export default function App() {
 

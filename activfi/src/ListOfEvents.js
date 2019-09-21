@@ -11,7 +11,7 @@ class ListOfEvents extends React.Component {
   }
 
   componentDidMount() {
-    fetch("https://my-json-server.typicode.com/hibroseph/eventfakedata/events")
+    fetch("https://activfi.herokuapp.com/events")
       .then(res => res.json())
       .then(result => {
         console.log(result);
