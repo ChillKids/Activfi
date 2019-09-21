@@ -4,6 +4,7 @@ const {
     selectAllEvents,
     selectEvent,
     insertEvent,
+    deleteEventWith
 } = require('../models/eventsModel');
 // Gets all the events from model
 function getEvents(callback) {
