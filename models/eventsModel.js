@@ -7,7 +7,7 @@ const {
 const pool = new Pool({
     host: 'localhost',
     database: 'myDb',
-    port: 5432,
+    port: 5431,
 });
 
 function selectAllEvents(callback) {
@@ -31,9 +31,27 @@ function selectEvent(id, callback) {
 }
 
 function insertEvent(eventObj, callback) {
-    pool.query(`INSERT INTO events (event_creator, event_name, event_description, event_location, event_date, created_at) VALUES ('Jonathan ', 'Volleyball ', 'Come play volleyball with us!', 'Porter Park, Rexburg ID', now(), now()`, [], (err, res) => {
+    const creater = eventObj.event_creator;
+    const eventName = eventObj.event_name;
+    const description = eventObj.event_description;
+    const eventDate = eventObj.event_date;
+    const location = eventObj.event_location;
+    const createdAt = eventObj.event_date;
+
+    pool.query(`INSERT INTO events (
+        event_creator, 
+        event_name, 
+        event_description, 
+        event_location, 
+        event_date, 
+        created_at) 
+        VALUES ($1, $2, $3, $4, $5, $6)`, 
+        [creater, eventName, description, location, eventDate, createdAt], (err, res) => {
         if (err) {
-            callback()
+            callback(err);
+        } else {
+            callback(null, res.rows);
+    
         }
     })
 }
