@@ -21,10 +21,10 @@ app.use(express.urlencoded({
     extended: false
 }));
 app.use(cookieParser());
-// const corsOptions = {
-//     origin: CORS_URL,
-//     credentials: true
-// }
+const corsOptions = {
+    origin: CORS_URL,
+    credentials: true
+}
 // parse various different custom JSON types as JSON
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
@@ -38,7 +38,7 @@ app.use('/events', eventsRouter);
 app.use(function(req, res, next) {
     next(createError(404));
 });
-app.use(cors());
+app.use(cors(corsOptions));
 // error handler
 app.use(function(err, req, res, next) {
     // set locals, only providing error in development
