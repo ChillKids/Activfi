@@ -49,6 +49,7 @@ app.use(function(err, req, res, next) {
     // render the error page
     res.status(err.status || 500);
     res.render('error');
+    next();
 });
 var debug = require('debug')('idahack:server');
 var http = require('http');
@@ -64,7 +65,7 @@ var server = http.createServer(app);
 /**
  * Listen on provided port, on all network interfaces.
  */
-server.listen(port, () => {
+server.listen(port, "0.0.0.0", () => {
     console.log('Listening on port ' + port)
 });
 server.on('error', onError);
