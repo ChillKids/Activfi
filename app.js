@@ -21,10 +21,10 @@ app.use(express.urlencoded({
     extended: false
 }));
 app.use(cookieParser());
-const corsOptions = {
-    origin: CORS_URL,
-    credentials: true
-}
+// const corsOptions = {
+//     origin: CORS_URL,
+//     credentials: true
+// }
 // parse various different custom JSON types as JSON
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
@@ -41,8 +41,8 @@ app.use(function(req, res, next) {
 app.use(cors(corsOptions));
 // error handler
 app.use(function(err, req, res, next) {
-    // res.header('Access-Control-Allow-Origin', CORS_URL);
-    // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+    res.header('Access-Control-Allow-Origin', CORS_URL);
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
