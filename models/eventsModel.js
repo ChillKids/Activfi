@@ -10,7 +10,7 @@ const pool = new Pool({
 });
 
 function selectAllEvents(callback) {
-    pool.query('SELECT event_creator, event_name, event_description, event_location, event_date, created_at FROM events', (err, res) => {
+    pool.query('SELECT event_id, event_creator, event_name, event_description, event_location, event_date, created_at FROM events', (err, res) => {
         if (err) {
             callback(err, null);
         } else {
@@ -20,7 +20,7 @@ function selectAllEvents(callback) {
 }
 
 function selectEvent(id, callback) {
-    pool.query('SELECT event_creator, event_name, event_description, event_location, event_date, created_at FROM events WHERE event_id = $1', [id], (err, res) => {
+    pool.query('SELECT event_id, event_creator, event_name, event_description, event_location, event_date, created_at FROM events WHERE event_id = $1', [id], (err, res) => {
         if (err) {
             callback(err, null);
         } else {
