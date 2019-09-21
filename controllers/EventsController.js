@@ -1,10 +1,10 @@
 // Call the events models function
+// 
 const {
     selectAllEvents,
     selectEvent,
     insertEvent,
 } = require('../models/eventsModel');
-
 // Gets all the events from model
 function getEvents(callback) {
     selectAllEvents(callback)
