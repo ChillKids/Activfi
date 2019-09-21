@@ -40,10 +40,10 @@ router.post('/', (req, res) => {
 router.delete('/:id', (req, res) => {
     deleteEvent(req.params.id, (err, resp) => {
         if (err) {
-            res.send(err)
+            res.status(400)
+                .send(err)
         } else {
-            res.status(200)
-                .send(resp);
+            res.status(200);
         }
     })
 })
