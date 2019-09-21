@@ -4,6 +4,7 @@ const {
     getEvents,
     getEventWith,
     createEvent,
+    deleteEvent
 } = require('../controllers/EventsController');
 /* GET events listing. */
 router.get('/', (req, res) => {
