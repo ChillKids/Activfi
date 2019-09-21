@@ -10,7 +10,7 @@ const pool = new Pool({
 });
 
 function selectAllEvents(callback) {
-    pool.query('SELECT event_id, event_creator, event_name, event_description, event_location, event_date, created_at FROM events', (err, res) => {
+    pool.query('SELECT event_id, event_creator, event_name, event_description, event_location, event_date, created_at, event_coordinates FROM events', (err, res) => {
         if (err) {
             callback(err, null);
         } else {
@@ -20,7 +20,7 @@ function selectAllEvents(callback) {
 }
 
 function selectEvent(id, callback) {
-    pool.query('SELECT event_id, event_creator, event_name, event_description, event_location, event_date, created_at FROM events WHERE event_id = $1', [id], (err, res) => {
+    pool.query('SELECT event_id, event_creator, event_name, event_description, event_location, event_date, created_at, event_coordinates FROM events WHERE event_id = $1', [id], (err, res) => {
         if (err) {
             callback(err, null);
         } else {
@@ -36,17 +36,19 @@ function insertEvent(eventObj, callback) {
     const eventDate = eventObj.event_date;
     const location = eventObj.event_location;
     const createdAt = eventObj.event_date;
+    const coordinates = eventObj.event_coordinates;
     pool.query(`INSERT INTO events (
         event_creator, 
         event_name, 
         event_description, 
         event_location, 
         event_date, 
-        created_at) 
-        VALUES ($1, $2, $3, $4, $5, $6)`,
-        [creater, eventName, description, location, eventDate, createdAt], (err, res) => {
+        created_at,
+        event_coordinates) 
+        VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+        [creater, eventName, description, location, eventDate, createdAt, coordinates], (err, res) => {
             if (err) {
-                callback(err);
+                callback(err, res);
             } else {
                 callback(null, 201);
             }

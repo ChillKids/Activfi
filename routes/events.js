@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 const {
+    geocodeAddress
+} = require('../apis/opencage');
+const {
     getEvents,
     getEventWith,
     createEvent,
@@ -28,13 +31,18 @@ router.get('/:id', (req, res) => {
 })
 /* POST event with parameters. */
 router.post('/', (req, res) => {
-    createEvent(req.body, (err, resp) => {
-        if (err) {
-            res.send(err);
-        } else {
-            res.send(resp);
-        }
-    });
+    geocodeAddress(req.body.event_location)
+        .then(data => {
+            let coordinates = data.results[0].geometry.lat + " " + data.results[0].geometry.lng;
+            req.body.event_coordinates = coordinates;
+            createEvent(req.body, (err, resp) => {
+                if (err) {
+                    res.send(err);
+                } else {
+                    res.send(resp);
+                }
+            });
+        });
 });
 /* DELETE event with id */
 router.delete('/:id', (req, res) => {

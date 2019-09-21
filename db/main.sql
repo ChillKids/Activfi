@@ -4,6 +4,7 @@ CREATE TABLE events (
   event_name VARCHAR,
   event_description VARCHAR,
   event_location VARCHAR,
+  event_coordinates VARCHAR,
   event_date DATE,
   created_at DATE
 );
