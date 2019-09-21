@@ -39,6 +39,11 @@ app.use(function(req, res, next) {
     next(createError(404));
 });
 app.use(cors(corsOptions));
+app.all('/', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next()
+});
 // error handler
 app.use(function(err, req, res, next) {
     // set locals, only providing error in development
