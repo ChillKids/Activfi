@@ -38,7 +38,7 @@ app.use('/events', eventsRouter);
 app.use(function(req, res, next) {
     next(createError(404));
 });
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 // error handler
 app.use(function(err, req, res, next) {
     res.header('Access-Control-Allow-Origin', CORS_URL);
