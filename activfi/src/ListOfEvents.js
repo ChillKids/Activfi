@@ -32,12 +32,14 @@ class ListOfEvents extends React.Component {
         {this.state.events.map(event => {
           return (
             <EventCard
+              key={event.event_id}
               title={event.event_name}
               location={event.event_location}
               description={event.event_description}
               date={event.event_date}
               createdDate={event.created_at}
               creator={event.event_creator}
+              id={event.event_id}
             ></EventCard>
           );
         })}

@@ -1,15 +1,32 @@
 import React from "react";
 import "./EventCard.css";
 
-import { Card, CardText, CardBody, CardTitle, CardSubtitle } from "reactstrap";
+import {
+  Card,
+  CardText,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Button
+} from "reactstrap";
 
 class EventCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      createdDate: props.createdDate
+      createdDate: props.createdDate,
+      id: props.id
     };
   }
+
+  handleDelete = e => {
+    console.log(this.state);
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = "https://activfi.herokuapp.com/events";
+    fetch(proxyurl + url + "/" + this.props.id, {
+      method: "DELETE"
+    });
+  };
 
   render() {
     // Handle the date conversion
@@ -33,6 +50,9 @@ class EventCard extends React.Component {
           <CardText>{this.props.description}</CardText>
           <CardText>Contact {this.props.creator}</CardText>
         </CardBody>
+        <Button color="primary" onClick={this.handleDelete}>
+          Delete
+        </Button>
       </Card>
     );
   }
