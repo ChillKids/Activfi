@@ -35,12 +35,13 @@ const useStyles = makeStyles(theme => ({
   },
 
   addbutton: {
-    margin: 0,
+    margin: 20,
     top: 'auto',
     right: 20,
     bottom: 20,
     left: 'auto',
     position: 'fixed',
+    zIndex: 3,
   },
 
   root: {
@@ -90,6 +91,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    zIndex: 3,
   },
 
   inputRoot: {
@@ -261,7 +263,7 @@ export default function SearchAppBar() {
           </div>
           <Divider />
           <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+            {['Look around you', 'Start Your Party', 'Friends'].map((text, index) => (
               <ListItem button key={text}>
                 <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                 <ListItemText primary={text} />
@@ -270,7 +272,7 @@ export default function SearchAppBar() {
           </List>
           <Divider />
           <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
+            {['Account', 'Setting', 'Log out'].map((text, index) => (
               <ListItem button key={text}>
                 <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                 <ListItemText primary={text} />
@@ -280,9 +282,13 @@ export default function SearchAppBar() {
         </Drawer>
 
         <div className={classes.drawerHeader} />
-        <Fab size="medium" color="secondary" aria-label="add" className={classes.addbutton}>
-          <AddIcon />
+        <Fab size="medium" onClick={up} color="secondary" aria-label="add" className={classes.addbutton}>
+          <AddIcon/>
         </Fab>
     </div>
   );
+}
+
+function up (){
+  window.scrollTo(0, 0)
 }

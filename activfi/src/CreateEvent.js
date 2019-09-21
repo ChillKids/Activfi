@@ -11,6 +11,10 @@ import {
 } from "reactstrap";
 import "./EventCard.css";
 
+const cardSub = {
+  fontSize: '20px',
+};
+
 class CreateEvent extends React.Component {
   constructor(props) {
     super(props);
@@ -51,11 +55,11 @@ class CreateEvent extends React.Component {
     });
   };
   render() {
-    if (this.state.created_event != 0) {
+    if (this.state.created_event !== 0) {
       return (
         <Card className="container" style={{ width: "500px" }}>
           <CardBody>
-            <CardTitle>Create an Event</CardTitle>
+            <CardTitle style={cardSub}>Create an Event</CardTitle>
             <Form>
               <FormGroup>
                 <Label>Event Name</Label>

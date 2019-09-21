@@ -50,7 +50,7 @@ class EventCard extends React.Component {
           <CardText>{this.props.description}</CardText>
           <CardText>Contact {this.props.creator}</CardText>
         </CardBody>
-        <Button color="primary" onClick={this.handleDelete}>
+        <Button onClick={this.handleDelete}>
           Delete
         </Button>
       </Card>

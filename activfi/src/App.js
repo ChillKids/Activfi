@@ -4,6 +4,7 @@ import EventCards from "./EventCard";
 import CreateEvent from "./CreateEvent";
 import ListOfEvents from "./ListOfEvents";
 import BackImg from "./BackImg";
+//import Map from "./Map";
 
 export default function App() {
   return (
@@ -11,7 +12,6 @@ export default function App() {
       <Frame></Frame>
       <CreateEvent></CreateEvent>
       <ListOfEvents></ListOfEvents>
-      <BackImg></BackImg>
     </div>
   );
 }
