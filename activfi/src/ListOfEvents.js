@@ -11,13 +11,9 @@ class ListOfEvents extends React.Component {
   }
 
   componentDidMount() {
-<<<<<<< HEAD
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
     const url = "https://activfi.herokuapp.com/events"; // site that doesn’t send Access-Control-*
     fetch(proxyurl + url)
-=======
-    fetch("https://activfi.herokuapp.com/events")
->>>>>>> ae52bd7b090a4f43248ad43ea4269293c2b329f7
       .then(res => res.json())
       .then(result => {
         console.log(result);
