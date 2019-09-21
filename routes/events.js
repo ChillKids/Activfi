@@ -35,4 +35,15 @@ router.post('/', (req, res) => {
         }
     });
 });
+/* DELETE event with id */
+router.delete('/:id', (req, res) => {
+    deleteEvent(req.body.id, (err, resp) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.status(200)
+                .send(resp);
+        }
+    })
+})
 module.exports = router;

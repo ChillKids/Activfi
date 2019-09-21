@@ -52,8 +52,19 @@ function insertEvent(eventObj, callback) {
             }
         })
 }
+
+function deleteEventWith(id, callback) {
+    pool.query(`DELETE FROM events WHERE event_id = $1`, [id], (err, res) => {
+        if (err) {
+            callback(err, null)
+        } else {
+            callback(null, res);
+        }
+    })
+}
 module.exports = {
     selectEvent: selectEvent,
     selectAllEvents: selectAllEvents,
-    insertEvent: insertEvent
+    insertEvent: insertEvent,
+    deleteEventWith: deleteEventWith
 }

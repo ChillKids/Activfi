@@ -20,7 +20,9 @@ function createEvent(event, callback) {
 
 function updateEvent(event) {}
 
-function deleteEvent(event) {}
+function deleteEvent(id, callback) {
+    deleteEventWith(id, callback);
+}
 module.exports = {
     getEvents: getEvents,
     getEventWith: getEventWith,
