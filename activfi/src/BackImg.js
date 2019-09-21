@@ -1,5 +1,4 @@
 import React from 'react';
-import Background from '/Users/CKLeung/Desktop/Activfi/activfi/src/background.jpg';
 
 var sectionStyle = {
     backgroundPosition: 'center',
