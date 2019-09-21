@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS events CASCADE;
-
 CREATE TABLE events (
   event_id serial PRIMARY KEY,
   event_creator VARCHAR,
