@@ -1,23 +1,43 @@
-const { Pool, Client } = require('pg')
+const {
+    Pool,
+    Client
+} = require('pg')
 // pools will use environment variables
 // for connection information
-
 const pool = new Pool({
     host: 'localhost',
-    database: 'Betzer',
-    port: 5431,
-  })
+    database: 'myDb',
+    port: 5432,
+});
 
-pool.query('SELECT NOW()', (err, res) => {
-  console.log(err, res)
-  pool.end()
-})
-// you can also use async/await
-const res = await pool.query('SELECT NOW()')
-await pool.end()
-// clients will also use environment variables
-// for connection information
-const client = new Client()
-await client.connect()
-const res = await client.query('SELECT NOW()')
-await client.end() 
+function selectAllEvents(callback) {
+    pool.query('SELECT event_creator, event_name, event_description, event_location, event_date, created_at FROM events', (err, res) => {
+        if (err) {
+            callback(err, null);
+        } else {
+            callback(null, res.rows);
+        }
+    })
+}
+
+function selectEvent(id, callback) {
+    pool.query('SELECT event_creator, event_name, event_description, event_location, event_date, created_at FROM events WHERE event_id = $1', [id], (err, res) => {
+        if (err) {
+            callback(err, null);
+        } else {
+            callback(null, res.rows);
+        }
+    })
+}
+
+function insertEvent(eventObj, callback) {
+    pool.query(`INSERT INTO events (event_creator, event_name, event_description, event_location, event_date, created_at) VALUES ('Jonathan ', 'Volleyball ', 'Come play volleyball with us!', 'Porter Park, Rexburg ID', now(), now()`, [], (err, res) => {
+        if (err) {
+            callback()
+        }
+    })
+}
+module.exports = {
+    selectEvent: selectEvent,
+    selectAllEvents: selectAllEvents
+}
