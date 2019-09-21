@@ -11,13 +11,18 @@ class ListOfEvents extends React.Component {
   }
 
   componentDidMount() {
-    fetch("https://my-json-server.typicode.com/hibroseph/eventfakedata/events")
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = "https://activfi.herokuapp.com/events"; // site that doesn’t send Access-Control-*
+    fetch(proxyurl + url)
       .then(res => res.json())
       .then(result => {
         console.log(result);
         this.setState({
           events: result
         });
+      })
+      .catch(err => {
+        console.log(err);
       });
   }
 
