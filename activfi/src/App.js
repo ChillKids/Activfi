@@ -1,9 +1,9 @@
-import React, { Component }  from 'react';
+import React from 'react';
 import Frame from './Frame';
 import EventCards from './EventCard'
 import CreateEvent from './CreateEvent'
 import ListOfEvents from './ListOfEvents'
-//import BackImg from './BackImg'
+import BackImg from './BackImg'
 
 export default function App() {
 
@@ -13,6 +13,7 @@ export default function App() {
       <EventCards></EventCards>
       <CreateEvent></CreateEvent>
       <ListOfEvents></ListOfEvents>
+      <BackImg></BackImg>
     </div>
   );
 }
