@@ -14,9 +14,8 @@
         "fastify": "^2.8.0",
         "http-errors": "~1.6.3",
         "morgan": "~1.9.1",
-        "pg": "^7.12.1"
-    },
-    "devDependencies": {
+        "pg": "^7.12.1",
         "dotenv": "^8.1.0"
-    }
+    },
+    "devDependencies": {}
 }
