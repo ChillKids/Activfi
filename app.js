@@ -5,11 +5,13 @@ var path = require('path');
 require('dotenv')
     .config()
 var cookieParser = require('cookie-parser');
+const cors = require('cors');
 var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var eventsRouter = require('./routes/events');
 var app = express();
+const CORS_URL = process.env.CORS_URL;
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -19,6 +21,10 @@ app.use(express.urlencoded({
     extended: false
 }));
 app.use(cookieParser());
+const corsOptions = {
+    origin: CORS_URL,
+    credentials: true
+}
 // parse various different custom JSON types as JSON
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
@@ -34,6 +40,7 @@ app.use(function(req, res, next) {
 });
 // error handler
 app.use(function(err, req, res, next) {
+    res.header('Access-Control-Allow-Origin', CORS_URL);
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
