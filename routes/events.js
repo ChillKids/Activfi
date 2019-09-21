@@ -37,7 +37,7 @@ router.post('/', (req, res) => {
 });
 /* DELETE event with id */
 router.delete('/:id', (req, res) => {
-    deleteEvent(req.body.id, (err, resp) => {
+    deleteEvent(req.params.id, (err, resp) => {
         if (err) {
             res.send(err)
         } else {
